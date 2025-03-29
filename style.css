@@ -1,0 +1,72 @@
+/* Basic styling for the demo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  #app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  h1 {
+    margin-top: 0;
+  }
+  
+  #pdf-upload {
+    margin-bottom: 20px;
+    display: block;
+  }
+  
+  #face-container {
+    width: 420px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  #pdf-text-output {
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  #extracted-text {
+    white-space: pre-wrap; /* preserve line breaks */
+  }
+  
+  /* Face styling */
+  .face {
+    fill: #f9c8a3; /* skin tone */
+    stroke: #000;
+    stroke-width: 2px;
+  }
+  
+  .hair {
+    fill: #3c2d2d; /* dark hair */
+    stroke: none;
+  }
+  
+  .eye {
+    fill: #000; /* black eyes */
+  }
+  
+  .nose {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+  }
+  
+  .mouth {
+    fill: none;
+    stroke: #000;
+    stroke-width: 2px;
+  }
+  
