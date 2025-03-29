@@ -1,72 +1,81 @@
-/* Basic styling for the demo */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  #app-container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #ccc;
-  }
-  
-  h1 {
-    margin-top: 0;
-  }
-  
-  #pdf-upload {
-    margin-bottom: 20px;
-    display: block;
-  }
-  
-  #face-container {
-    width: 420px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  #pdf-text-output {
-    border: 1px solid #ccc;
-    background-color: #fafafa;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  
-  #extracted-text {
-    white-space: pre-wrap; /* preserve line breaks */
-  }
-  
-  /* Face styling */
-  .face {
-    fill: #f9c8a3; /* skin tone */
-    stroke: #000;
-    stroke-width: 2px;
-  }
-  
-  .hair {
-    fill: #3c2d2d; /* dark hair */
-    stroke: none;
-  }
-  
-  .eye {
-    fill: #000; /* black eyes */
-  }
-  
-  .nose {
-    fill: none;
-    stroke: #000;
-    stroke-width: 2px;
-  }
-  
-  .mouth {
-    fill: none;
-    stroke: #000;
-    stroke-width: 2px;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px 15px;
+  overflow-x: hidden;
+}
+
+#app-container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 25px 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.8rem;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+#pdf-upload {
+  margin: 0 auto 25px;
+  display: block;
+  padding: 10px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: calc(100% - 20px);
+  max-width: 400px;
+}
+
+#face-container {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#face-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#pdf-text-output {
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#extracted-text {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.face { fill: #f9c8a3; stroke: #000; stroke-width: 2px; }
+.hair { fill: #3c2d2d; stroke: none; }
+.eye { fill: #000; }
+.nose { fill: none; stroke: #000; stroke-width: 2px; }
+.mouth { fill: none; stroke: #000; stroke-width: 2px; }
+
+@media (max-width: 768px) {
+  #app-container { padding: 20px 10px; margin: 0 10px; }
+  h1 { font-size: 1.5rem; }
+  #face-container { margin-bottom: 15px; padding: 8px; }
+  #pdf-text-output { margin: 15px 0; padding: 10px; }
+}
