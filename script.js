@@ -10,7 +10,6 @@ function handleFileUpload(event) {
 
     Papa.parse(file, {
         header: true,
-        dynamicTyping: true,
         complete: function(results) {
             const processedData = processCSVData(results.data);
             globalMaxValues = calculateGlobalMax(processedData);
@@ -28,7 +27,7 @@ function processCSVData(data) {
     data.forEach(row => {
         const date = row.Date;
         const category = row.Category;
-        const amount = Math.abs(Number(row.Amount));
+        const amount = parseFloat((row.Amount || '0').replace(/[^0-9.]/g, '')) || 0;
         
         if (!grouped[date]) grouped[date] = {};
         grouped[date][category] = (grouped[date][category] || 0) + amount;
@@ -75,15 +74,22 @@ function drawCartoonFace(svg, dateData, date) {
     const centerX = faceWidth / 2;
     const centerY = faceHeight / 2 + 30;
 
-    // Original face design with dynamic scaling
-    const features = {
-        faceRY: scaleValue(dateData.Housing, globalMaxValues.Housing, 80, 120),
-        eyeRx: scaleValue(dateData.Transport, globalMaxValues.Transport, 8, 16),
-        mouthWidth: scaleValue(dateData.Food, globalMaxValues.Food, 40, 80),
-        eyebrowY: scaleValue(dateData.Entertainment, globalMaxValues.Entertainment, centerY - 35, centerY - 45)
+    // Category to feature mapping
+    const categories = {
+        Grocery: dateData.Grocery || 0,
+        Transportation: dateData.Transportation || 0,
+        'Go out to eat': dateData['Go out to eat'] || 0,
+        Tithing: dateData.Tithing || 0
     };
 
-    // Face shape
+    const features = {
+        faceRY: scaleValue(categories.Grocery, globalMaxValues.Grocery, 80, 120),
+        eyeRx: scaleValue(categories.Transportation, globalMaxValues.Transportation, 8, 16),
+        mouthWidth: scaleValue(categories['Go out to eat'], globalMaxValues['Go out to eat'], 40, 80),
+        eyebrowY: scaleValue(categories.Tithing, globalMaxValues.Tithing, centerY - 35, centerY - 45)
+    };
+
+    // Face shape (Grocery)
     svg.append('ellipse')
         .classed('face', true)
         .attr('cx', centerX)
@@ -91,7 +97,7 @@ function drawCartoonFace(svg, dateData, date) {
         .attr('rx', 80)
         .attr('ry', features.faceRY);
 
-    // Hair
+    // Hair (fixed element)
     const hairPath = [
         { x: centerX - 80, y: centerY - 40 },
         { x: centerX - 85, y: centerY - 80 },
@@ -106,7 +112,7 @@ function drawCartoonFace(svg, dateData, date) {
         .classed('hair', true)
         .attr('d', d3.line().curve(d3.curveBasisClosed)(hairPath));
 
-    // Eyebrows
+    // Eyebrows (Tithing)
     svg.append('path')
         .attr('d', `M${centerX - 45} ${features.eyebrowY} Q${centerX - 30} ${features.eyebrowY - 5}, ${centerX - 15} ${features.eyebrowY}`)
         .attr('stroke', '#000')
@@ -119,7 +125,7 @@ function drawCartoonFace(svg, dateData, date) {
         .attr('stroke-width', 2)
         .attr('fill', 'none');
 
-    // Eyes
+    // Eyes (Transportation)
     ['left', 'right'].forEach(side => {
         const eyeX = side === 'left' ? centerX - 25 : centerX + 25;
         svg.append('ellipse')
@@ -136,12 +142,12 @@ function drawCartoonFace(svg, dateData, date) {
             .attr('fill', '#000');
     });
 
-    // Nose
+    // Nose (fixed element)
     svg.append('path')
         .classed('nose', true)
         .attr('d', `M${centerX} ${centerY - 10} Q${centerX + 8} ${centerY + 10}, ${centerX} ${centerY + 10}`);
 
-    // Mouth
+    // Mouth (Go out to eat)
     svg.append('path')
         .classed('mouth', true)
         .attr('d', `M${centerX - features.mouthWidth/2} ${centerY + 35} Q${centerX} ${centerY + 45}, ${centerX + features.mouthWidth/2} ${centerY + 35}`);
