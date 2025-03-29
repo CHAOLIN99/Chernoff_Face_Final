@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Face Visualization with PDF Parsing</title>
+  <!-- D3.js CDN -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- PDF.js (basic version) -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.5.141/build/pdf.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app-container">
+    <h1>Bank Statement Chernoff Face</h1>
+
+    <!-- File input for PDF -->
+    <input type="file" id="pdf-upload" accept="application/pdf" />
+
+    <!-- Container for the face -->
+    <div id="face-container">
+      <svg id="face-svg" width="400" height="400"></svg>
+    </div>
+
+    <!-- Display extracted text (for demo/debugging) -->
+    <div id="pdf-text-output">
+      <h3>Extracted PDF Text</h3>
+      <pre id="extracted-text"></pre>
+    </div>
+  </div>
+
+  <!-- Main JS logic -->
+  <script src="script.js"></script>
+</body>
+</html>
