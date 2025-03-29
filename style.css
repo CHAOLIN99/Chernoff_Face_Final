@@ -1,3 +1,4 @@
+/* Original CSS maintained */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
@@ -23,7 +24,7 @@ h1 {
   padding-bottom: 15px;
 }
 
-#pdf-upload {
+#csv-upload {
   margin: 0 auto 25px;
   display: block;
   padding: 10px;
@@ -67,6 +68,7 @@ h1 {
   margin: 0;
 }
 
+/* Face styling */
 .face {
   fill: #FFDBAC;
   stroke: #000;
@@ -92,6 +94,7 @@ h1 {
   stroke-width: 2;
 }
 
+/* Responsive design */
 @media (max-width: 768px) {
   #app-container { 
     padding: 20px 10px; 
@@ -108,4 +111,22 @@ h1 {
     margin: 15px 0; 
     padding: 10px; 
   }
+}
+
+/* Added for multi-face layout */
+.face-group {
+  margin: 10px;
+  display: inline-block;
+}
+
+.face-svg {
+  width: 120px;
+  height: 150px;
+  margin: 5px;
+}
+
+.date-label {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 5px;
 }

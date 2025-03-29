@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bank Statement Chernoff Face</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.5.141/build/pdf.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
+    <title>CSV Face Visualization</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app-container">
-    <h1>Bank Statement Chernoff Face</h1>
-    <input type="file" id="pdf-upload" accept="application/pdf" />
-    
-    <div id="face-container">
-      <svg id="face-svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet"></svg>
+    <div id="app-container">
+        <h1>Expense Face Visualizer</h1>
+        <input type="file" id="csv-upload" accept=".csv">
+        <div id="face-container"></div>
+        <div id="pdf-text-output">
+            <pre id="extracted-text"></pre>
+        </div>
     </div>
-
-    <div id="pdf-text-output">
-      <h3>Extracted PDF Text</h3>
-      <pre id="extracted-text"></pre>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
