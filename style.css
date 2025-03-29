@@ -67,15 +67,45 @@ h1 {
   margin: 0;
 }
 
-.face { fill: #f9c8a3; stroke: #000; stroke-width: 2px; }
-.hair { fill: #3c2d2d; stroke: none; }
-.eye { fill: #000; }
-.nose { fill: none; stroke: #000; stroke-width: 2px; }
-.mouth { fill: none; stroke: #000; stroke-width: 2px; }
+.face {
+  fill: #FFDBAC;
+  stroke: #000;
+  stroke-width: 2;
+}
+.hair {
+  fill: #3B2314;
+  stroke: #000;
+  stroke-width: 1;
+}
+.eye {
+  stroke: #000;
+  stroke-width: 1;
+}
+.nose {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5;
+}
+.mouth {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2;
+}
 
 @media (max-width: 768px) {
-  #app-container { padding: 20px 10px; margin: 0 10px; }
-  h1 { font-size: 1.5rem; }
-  #face-container { margin-bottom: 15px; padding: 8px; }
-  #pdf-text-output { margin: 15px 0; padding: 10px; }
+  #app-container { 
+    padding: 20px 10px; 
+    margin: 0 10px; 
+  }
+  h1 { 
+    font-size: 1.5rem; 
+  }
+  #face-container { 
+    margin-bottom: 15px; 
+    padding: 8px; 
+  }
+  #pdf-text-output { 
+    margin: 15px 0; 
+    padding: 10px; 
+  }
 }

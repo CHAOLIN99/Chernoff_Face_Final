@@ -41,72 +41,93 @@ function digestPdfText(text) {
 
 function drawCartoonFace({ balance }) {
   svg.selectAll("*").remove();
-  const maxBalance = 5000;
-  const scaledValue = Math.max(-0.5, Math.min(balance / maxBalance, 0.5));
-
-  // Face Outline
-  const faceOutline = [
-    { x: centerX - 80, y: centerY - 90 },
-    { x: centerX - 70, y: centerY + 80 },
-    { x: centerX + 70, y: centerY + 80 },
-    { x: centerX + 80, y: centerY - 90 }
-  ];
-  svg.append("path")
-    .datum(faceOutline)
-    .attr("d", d3.line().curve(d3.curveBasisClosed)(faceOutline))
-    .attr("class", "face");
-
-  // Hair
+  
+  // Face shape (more rounded)
+  svg.append("ellipse")
+    .attr("cx", centerX)
+    .attr("cy", centerY)
+    .attr("rx", 80)
+    .attr("ry", 100)
+    .attr("fill", "#FFDBAC")  // Light peach skin tone
+    .attr("stroke", "#000")
+    .attr("stroke-width", 2);
+    
+  // Hair (dark brown)
   const hairPath = [
-    { x: centerX - 80, y: centerY - 90 },
-    { x: centerX - 60, y: centerY - 130 },
-    { x: centerX,      y: centerY - 150 },
-    { x: centerX + 60, y: centerY - 130 },
-    { x: centerX + 80, y: centerY - 90 }
+    { x: centerX - 80, y: centerY - 40 },
+    { x: centerX - 85, y: centerY - 80 },
+    { x: centerX - 60, y: centerY - 110 },
+    { x: centerX, y: centerY - 120 },
+    { x: centerX + 60, y: centerY - 110 },
+    { x: centerX + 85, y: centerY - 80 },
+    { x: centerX + 80, y: centerY - 40 }
   ];
+  
   svg.append("path")
     .datum(hairPath)
     .attr("d", d3.line().curve(d3.curveBasisClosed)(hairPath))
-    .attr("class", "hair");
-
-  // Eyes
-  svg.append("circle")
-    .attr("cx", centerX - 30)
-    .attr("cy", centerY - 20)
-    .attr("r", 10)
-    .attr("class", "eye");
-  svg.append("circle")
-    .attr("cx", centerX + 30)
-    .attr("cy", centerY - 20)
-    .attr("r", 10)
-    .attr("class", "eye");
-
-  // Eyebrows
-  const eyebrowOffset = scaledValue * 10;
-  svg.append("line")
-    .attr("x1", centerX - 45)
-    .attr("y1", centerY - 40 + eyebrowOffset)
-    .attr("x2", centerX - 15)
-    .attr("y2", centerY - 45 + eyebrowOffset)
+    .attr("fill", "#3B2314")  // Dark brown hair
     .attr("stroke", "#000")
-    .attr("stroke-width", 3);
-  svg.append("line")
-    .attr("x1", centerX + 15)
-    .attr("y1", centerY - 45 + eyebrowOffset)
-    .attr("x2", centerX + 45)
-    .attr("y2", centerY - 40 + eyebrowOffset)
+    .attr("stroke-width", 1);
+    
+  // Eyebrows (thicker and more angular)
+  svg.append("path")
+    .attr("d", `M${centerX - 45} ${centerY - 35} Q${centerX - 30} ${centerY - 40}, ${centerX - 15} ${centerY - 35}`)
     .attr("stroke", "#000")
-    .attr("stroke-width", 3);
-
-  // Nose
+    .attr("stroke-width", 3)
+    .attr("fill", "none");
+    
   svg.append("path")
-    .attr("d", `M ${centerX} ${centerY - 5} L ${centerX - 5} ${centerY + 10} L ${centerX + 5} ${centerY + 10} Z`)
-    .attr("class", "nose");
-
-  // Mouth
-  const mouthY = centerY + 40;
-  const mouthCurve = scaledValue * 30;
+    .attr("d", `M${centerX + 15} ${centerY - 35} Q${centerX + 30} ${centerY - 40}, ${centerX + 45} ${centerY - 35}`)
+    .attr("stroke", "#000")
+    .attr("stroke-width", 3)
+    .attr("fill", "none");
+    
+  // Eyes (oval shape with black pupils)
+  svg.append("ellipse")
+    .attr("cx", centerX - 25)
+    .attr("cy", centerY - 20)
+    .attr("rx", 12)
+    .attr("ry", 8)
+    .attr("fill", "white")
+    .attr("stroke", "#000")
+    .attr("stroke-width", 1);
+    
+  svg.append("ellipse")
+    .attr("cx", centerX + 25)
+    .attr("cy", centerY - 20)
+    .attr("rx", 12)
+    .attr("ry", 8)
+    .attr("fill", "white")
+    .attr("stroke", "#000")
+    .attr("stroke-width", 1);
+    
+  // Pupils
+  svg.append("ellipse")
+    .attr("cx", centerX - 25)
+    .attr("cy", centerY - 20)
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("fill", "#000");
+    
+  svg.append("ellipse")
+    .attr("cx", centerX + 25)
+    .attr("cy", centerY - 20)
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("fill", "#000");
+    
+  // Nose (simple curved line)
   svg.append("path")
-    .attr("d", `M ${centerX - 30} ${mouthY} Q ${centerX} ${mouthY + mouthCurve} ${centerX + 30} ${mouthY}`)
-    .attr("class", "mouth");
+    .attr("d", `M${centerX} ${centerY - 10} Q${centerX + 8} ${centerY + 10}, ${centerX} ${centerY + 10}`)
+    .attr("stroke", "#000")
+    .attr("stroke-width", 1.5)
+    .attr("fill", "none");
+    
+  // Mouth (slight smile)
+  svg.append("path")
+    .attr("d", `M${centerX - 30} ${centerY + 35} Q${centerX} ${centerY + 45}, ${centerX + 30} ${centerY + 35}`)
+    .attr("stroke", "#000")
+    .attr("stroke-width", 2)
+    .attr("fill", "none");
 }
