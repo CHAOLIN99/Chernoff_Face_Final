@@ -149,6 +149,41 @@ h1 {
   animation: spin 0.8s linear infinite;
 }
 
+/* Tooltip Styles */
+#tooltip {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  z-index: 1000;
+}
+
+.tooltip-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.3rem 0;
+}
+
+.category {
+  color: #3498db;
+  font-weight: 500;
+}
+
+.amount {
+  color: #2c3e50;
+  min-width: 60px;
+  text-align: right;
+}
+
+.face-group {
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.face-group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
